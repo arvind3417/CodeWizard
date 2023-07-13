@@ -15,6 +15,8 @@ import { PORT, BASEURL } from "./constants";
 import { connectDB } from "./db";
 
 import { grantAdminAccessrouter } from "./routes/grant_Admin_Access";
+import { quesRouter } from "./routes/questionRoutes";
+import { testcasesRouter } from "./routes/testcasesrouter";
 
 // Use express app 
 const app = express();
@@ -26,8 +28,8 @@ app.use(cors());
 
 // Routes
 app.use(`${BASEURL}/auth`, authRouter); 
-app.use(`${BASEURL}/users`, userRouter,);
-app.use(`${BASEURL}/admin`,grantAdminAccessrouter);
+app.use(`${BASEURL}/users`, userRouter,quesRouter,testcasesRouter);
+app.use(`${BASEURL}/admin`,quesRouter,grantAdminAccessrouter,testcasesRouter);
 
 app.use("/ok", (_req, res) =>
   res.status(200).send(httpResponse(true, "OK", {}))
