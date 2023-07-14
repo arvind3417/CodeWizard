@@ -17,6 +17,8 @@ import { connectDB } from "./db";
 import { grantAdminAccessrouter } from "./routes/grant_Admin_Access";
 import { quesRouter } from "./routes/questionRoutes";
 import { testcasesRouter } from "./routes/testcasesrouter";
+import { judgeRouter } from "./routes/judgeRoutes";
+import { submissionRouter } from "./routes/submissionRoutes";
 
 // Use express app 
 const app = express();
@@ -28,8 +30,8 @@ app.use(cors());
 
 // Routes
 app.use(`${BASEURL}/auth`, authRouter); 
-app.use(`${BASEURL}/users`, userRouter,quesRouter,testcasesRouter);
-app.use(`${BASEURL}/admin`,quesRouter,grantAdminAccessrouter,testcasesRouter);
+app.use(`${BASEURL}/users`, userRouter,quesRouter,testcasesRouter,submissionRouter);
+app.use(`${BASEURL}/admin`,quesRouter,grantAdminAccessrouter,testcasesRouter,judgeRouter);
 
 app.use("/ok", (_req, res) =>
   res.status(200).send(httpResponse(true, "OK", {}))
