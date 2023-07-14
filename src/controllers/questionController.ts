@@ -26,7 +26,7 @@ const getAggregation: any[] = [
 ]
 
 const endpoint = "https://deb0f0cf.problems.sphere-engine.com/api/v4/problems";
-const accessToken = "6e966f12397860808004472c2a74bf55";
+const accessToken = process.env.accessToken;
 
 // Function to retrieve all problems
 async function getAllProblems() {

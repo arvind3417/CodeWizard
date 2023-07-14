@@ -24,8 +24,9 @@ import { User } from "../models/users";
     },
   ]
   
-  const endpoint = "https://deb0f0cf.problems.sphere-engine.com/api/v4/submissions";
-  const accessToken = "6e966f12397860808004472c2a74bf55";
+  const endpoint = "https://deb0f0cf.problems.sphere-engine.com/api/v4/submissions"; 
+   const accessToken = process.env.accessToken;
+
   
   // Function to retrieve all problems
   async function getAllProblems(ids) {
