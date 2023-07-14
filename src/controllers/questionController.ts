@@ -26,7 +26,7 @@ const getAggregation: any[] = [
 ]
 
 const endpoint = "https://deb0f0cf.problems.sphere-engine.com/api/v4/problems";
-const accessToken = process.env.accessToken;
+const accessToken = process.env.ACCESS_TOKEN;
 
 // Function to retrieve all problems
 async function getAllProblems() {
@@ -42,6 +42,7 @@ async function getProblemById(id) {
 
 // Function to create a new problem
 async function createProblem(problemData) {
+
   const url = `${endpoint}?access_token=${accessToken}`;
   const response = await axios.post(url, problemData);
   return response.data;
@@ -59,9 +60,6 @@ async function updateProblem(Id, problemData) {
 // Function to delete a problem by ID
 async function deleteProblem(Id) {
   const id = parseInt(Id, 10);
-  console.log('====================================');
-  console.log("deleting");
-  console.log('====================================');
 
   const url = `${endpoint}/${id}?access_token=${accessToken}`;
   const response = await axios.delete(url);
@@ -77,12 +75,6 @@ export const getQuestions = asyncWrapper(
     const skip = (page - 1) * 5;
    const getall =  await getAllProblems();
     const documents = await Question.aggregate([
-      // {
-      //   $skip: skip,
-      // },
-      // {
-      //   $limit: 5,
-      // },
       ...getAggregation,
     ]);
     if (!documents || !getall) {
@@ -150,7 +142,7 @@ export const postQuestion = asyncWrapper(
        const created =   await createProblem(_req.body);
        const questionData = {
         name: _req.body.name,
-        body: _req.body.name,
+        body: _req.body.body,
         ID: created.id, // Store the generated ID in the ID field
       };
       const documents = await Question.create(questionData);

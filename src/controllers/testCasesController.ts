@@ -23,8 +23,7 @@ import axios from "axios";
   ]
   
   const endpoint = "https://deb0f0cf.problems.sphere-engine.com/api/v4/problems";
-  const accessToken = process.env.accessToken;
-
+  const accessToken = process.env.ACCESS_TOKEN;
   
   // Function to retrieve all problems
   async function getAllProblems(id) {

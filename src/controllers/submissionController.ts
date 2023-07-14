@@ -25,7 +25,9 @@ import { User } from "../models/users";
   ]
   
   const endpoint = "https://deb0f0cf.problems.sphere-engine.com/api/v4/submissions"; 
-   const accessToken = process.env.accessToken;
+//    const accessToken = process.env.accessToken;
+const accessToken = process.env.ACCESS_TOKEN;
+
 
   
   // Function to retrieve all problems
